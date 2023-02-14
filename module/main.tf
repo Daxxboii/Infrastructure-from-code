@@ -1,9 +1,6 @@
 resource "aws_apprunner_connection" "example" {
-  connection_name = "example"
+  connection_name = "Daxx"
   provider_type       = "GITHUB"
-  tags = {
-    Name = "example-gh-connection"
-  }
 }
 
 resource "aws_apprunner_auto_scaling_configuration_version" "example" {
@@ -32,7 +29,7 @@ resource "aws_apprunner_service" "example" {
         configuration_source = "REPOSITORY"
       }
  
-      repository_url = var.repo_location
+      repository_url = var.github_repository_link
  
       source_code_version {
         type  = "BRANCH"
