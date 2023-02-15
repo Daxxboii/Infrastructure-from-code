@@ -8,11 +8,19 @@ variable "github_repository_link"{
 }
 
 variable "apprunner-service-name" {
-  default = "apprunner-service"
+  default = "apprunner-service-1"
 }
 
 variable "api-gateway-name"{
   default = "apprunner-service-api-gateway"
+}
+
+variable "registered-domain-name"{
+  default = "testing.com"
+}
+
+output "registered-domain-name"{
+  value = var.registered-domain-name
 }
 
 //According to documentation , github app handshake has to be done within the console by the user

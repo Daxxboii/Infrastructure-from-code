@@ -1,5 +1,5 @@
-resource "aws_apprunner_connection" "example" {
-  connection_name = "Daxx"
+resource "aws_apprunner_connection" "github_connection" {
+  connection_name = var.apprunner-service-name
   provider_type       = "GITHUB"
 }
 
@@ -21,7 +21,7 @@ resource "aws_apprunner_service" "apprunner-service" {
  
   source_configuration {
     authentication_configuration {
-      connection_arn = aws_apprunner_connection.example.arn
+      connection_arn = aws_apprunner_connection.github_connection.arn
     }
  
     code_repository {
@@ -44,11 +44,18 @@ resource "aws_apprunner_service" "apprunner-service" {
     Name = "my-apprunner-service"
   }
 }
+output "try" {
+    value = format("%s/%s","https:/",aws_apprunner_service.apprunner-service.service_url) 
+}
 
 resource "aws_apigatewayv2_api" "api-gateway" {
   name          = var.api-gateway-name
   protocol_type = "HTTP"
 
-  target = aws_apprunner_service.apprunner-service.service_url
+  target =format("%s/%s","https:/",aws_apprunner_service.apprunner-service.service_url) 
+  //target = "https://www.google.com"
 }
+
+
+
  
