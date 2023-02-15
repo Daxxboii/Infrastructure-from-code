@@ -14,10 +14,10 @@ resource "aws_apprunner_auto_scaling_configuration_version" "example" {
   }
 }
  
-resource "aws_apprunner_service" "example" {
+resource "aws_apprunner_service" "apprunner-service" {
   auto_scaling_configuration_arn = aws_apprunner_auto_scaling_configuration_version.example.arn
  
-  service_name = "example"
+  service_name = var.apprunner-service-name
  
   source_configuration {
     authentication_configuration {
@@ -43,5 +43,12 @@ resource "aws_apprunner_service" "example" {
   tags = {
     Name = "my-apprunner-service"
   }
+}
+
+resource "aws_apigatewayv2_api" "api-gateway" {
+  name          = var.api-gateway-name
+  protocol_type = "HTTP"
+
+  target = aws_apprunner_service.apprunner-service.service_url
 }
  

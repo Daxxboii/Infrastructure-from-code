@@ -6,11 +6,11 @@ terraform {
   }
 }
 
-provider "aws" {
+/*provider "aws" {
   region                  = "us-east-1"
   shared_credentials_file = "~/.aws/credentials"
   profile                 = "default"
-}
+}*/
 
 provider "aws" {
   alias  = "eu-west-1"
