@@ -1,12 +1,12 @@
 module "us-east-2" {
   source = "./module"
-   providers = {
+  providers = {
     aws = "aws"
   }
 }
 module "eu-west-1" {
   source = "./module"
-   providers = {
+  providers = {
     aws = "aws.eu-west-1"
   }
 }

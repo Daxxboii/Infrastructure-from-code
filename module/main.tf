@@ -44,17 +44,10 @@ resource "aws_apprunner_service" "apprunner-service" {
     Name = "my-apprunner-service"
   }
 }
-output "try" {
+output "apprunner-service-endpoint" {
     value = format("%s/%s","https:/",aws_apprunner_service.apprunner-service.service_url) 
 }
 
-resource "aws_apigatewayv2_api" "api-gateway" {
-  name          = var.api-gateway-name
-  protocol_type = "HTTP"
-
-  target =format("%s/%s","https:/",aws_apprunner_service.apprunner-service.service_url) 
-  //target = "https://www.google.com"
-}
 
 
 
